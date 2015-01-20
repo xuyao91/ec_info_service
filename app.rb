@@ -3,8 +3,7 @@ require "sinatra"
 set :public_folder, 'public'
 set :bind, '0.0.0.0'
 #config_file "config/config.yml"  
-API_VCOOLINE_URL= "http://ec.vcooline.com"
-#API_VCOOLINE_URL= "http://127.0.0.1:3001"
+API_VCOOLINE_URL= "http://127.0.0.1:3001"
 
 get "/" do
   erb :order	
