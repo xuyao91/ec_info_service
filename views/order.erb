@@ -1,0 +1,348 @@
+<form class="form-inline" role="form">
+  <div class="form-group">
+    <label class="sr-only">order_no</label>
+    <p class="form-control-static">请选择:&nbsp;</p>
+  </div>
+  <div class="form-group">
+
+    <label for="inputPassword2" class="sr-only">order_no</label>
+
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-primary active" data-type="order">
+        <input type="radio" name="options" id="option2" autocomplete="off"> 订单号
+      </label>
+      <label class="btn btn-primary" data-type="payment">
+        <input type="radio" name="options" id="option3" autocomplete="off"> 交易号
+      </label>
+    </div>
+
+    <input type="text" class="form-control" id="order_no" placeholder="请输入单号查找">
+  </div>
+  <a class="btn btn-primary" href="javascript:;" id="select">select</a>
+</form>
+<br/><br/>
+<div class="alert alert-success" role="alert" style="display:none;"></div>
+<table class="table table-hover table-bordered" id="ractive_container"></table>
+
+<script id="ractive_template" type="text/ractive">
+  <tbody>
+    <tr style="text-align:center;"><td colspan="2"><span style="font-size:16px;font-weight: bold;">order(订单)</span></td></tr>
+    <tr>
+      <td>id</td>
+      <td>{{order['id']}}</td>
+    </tr>
+    <tr>
+      <td>sn</td>
+      <td>{{order['sn']}}</td>
+    </tr>
+    <tr>
+      <td>shop_id</td>
+      <td>{{order['shop_id']}}</td>
+    </tr>
+    <tr>
+      <td>wx_user_id</td>
+      <td>{{order['wx_user_id']}}</td>
+    </tr>
+    <tr>
+      <td>expired_at</td>
+      <td>{{order['expired_at']}}</td>
+    </tr>
+    <tr>
+      <td>canceled_at</td>
+      <td>{{order['canceled_at']}}</td>
+    </tr>
+    <tr>
+      <td>amount</td>
+      <td>{{order['amount']}}</td>
+    </tr>
+    <tr>
+      <td>status</td>
+      <td>{{order['status']}}</td>
+    </tr>
+    <tr>
+      <td>delivery_sn</td>
+      <td>{{order['delivery_sn']}}</td>
+    </tr>
+    <tr>
+      <td>delivery_corp</td>
+      <td>{{order['delivery_corp']}}</td>
+    </tr>
+    <tr>
+      <td>paid_at</td>
+      <td>{{order['paid_at']}}</td>
+    </tr>
+    <tr>
+      <td>freight_value</td>
+      <td>{{order['freight_value']}}</td>
+    </tr>
+    <tr>
+      <td>used_points</td>
+      <td>{{order['used_points']}}</td>
+    </tr>
+    <tr>
+      <td>points_deduction</td>
+      <td>{{order['points_deduction']}}</td>
+    </tr>
+    <tr>
+      <td>discount_deduction</td>
+      <td>{{order['discount_deduction']}}</td>
+    </tr>
+    <tr>
+      <td>coupon_deduction</td>
+      <td>{{order['coupon_deduction']}}</td>
+    </tr>
+    <tr>
+      <td>coupon_code</td>
+      <td>{{order['coupon_deduction']}}</td>
+    </tr>
+    <tr>
+      <td>coupon_deduction</td>
+      <td>{{order['coupon_code']}}</td>
+    </tr>
+    <tr>
+      <td>products_amount</td>
+      <td>{{order['products_amount']}}</td>
+    </tr>
+    <tr>
+      <td>payment_type_name</td>
+      <td>{{order['payment_type_name']}}</td>
+    </tr>
+    <tr>
+      <td>delivery_type</td>
+      <td>{{order['delivery_type']}}</td>
+    </tr>
+    <tr>
+      <td>sources</td>
+      <td>{{order['sources']}}</td>
+    </tr>
+    <tr>
+      <td>created_at</td>
+      <td>{{order['created_at']}}</td>
+    </tr>
+    <tr>
+      <td>updated_at</td>
+      <td>{{order['updated_at']}}</td>
+    </tr>
+    <tr style="text-align:center;"><td colspan="2"><span style="font-size:16px;font-weight: bold;">payment(支付情况)</span></td></tr>
+    {{#each payments:num}}
+    <tr style="text-align:center;"><td colspan="2">第{{num + 1}}条 payment</td></tr>
+    <tr>
+      <td>id</td>
+      <td>{{id}}</td>
+    </tr>
+    <tr>
+      <td>payment_type_id</td>
+      <td>{{payment_type_id}}</td>
+    </tr>
+    <tr>
+      <td>out_trade_no</td>
+      <td>{{out_trade_no}}</td>
+    </tr>
+    <tr>
+      <td>trade_no</td>
+      <td>{{trade_no}}</td>
+    </tr>
+    <tr>
+      <td>amount</td>
+      <td>{{amount}}</td>
+    </tr>
+    <tr>
+      <td>subject</td>
+      <td>{{subject}}</td>
+    </tr>
+    <tr>
+      <td>body</td>
+      <td>{{body}}</td>
+    </tr>
+    <tr>
+      <td>raw_body</td>
+      <td style="word-break:break-word;">{{raw_body}}</td>
+    </tr>
+    <tr>
+      <td>status</td>
+      <td>{{status}}</td>
+    </tr>
+    <tr>
+      <td>payable_id</td>
+      <td>{{payable_id}}</td>
+    </tr>
+    <tr>
+      <td>payable_type</td>
+      <td>{{payable_type}}</td>
+    </tr>
+    <tr>
+      <td>created_at</td>
+      <td>{{created_at}}</td>
+    </tr>
+    <tr>
+      <td>updated_at</td>
+      <td>{{updated_at}}</td>
+    </tr>
+    <tr>
+      <td>trade_status</td>
+      <td>{{trade_status}}</td>
+    </tr>
+    <tr>
+      <td>wx_mp_user_id</td>
+      <td>{{wx_mp_user_id}}</td>
+    </tr>
+    {{/each}}
+    <tr style="text-align:center;"><td colspan="2"><span style="font-size:16px;font-weight: bold;">vcooline_payment(微客来支付情况)</span></td></tr>
+    {{#each vcooline_payments:num}}
+    <tr style="text-align:center;"><td colspan="2">第{{num + 1}}条 vcooline payment</td></tr>
+    <tr>
+      <td>id</td>
+      <td>{{id}}</td>
+    </tr>
+    <tr>
+      <td>supplier_id</td>
+      <td>{{supplier_id}}</td>
+    </tr>
+    <tr>
+      <td>customer_id</td>
+      <td>{{customer_id}}</td>
+    </tr>
+    <tr>
+      <td>customer_type</td>
+      <td>{{customer_type}}</td>
+    </tr>
+    <tr>
+      <td>payment_type_id</td>
+      <td>{{payment_type_id}}</td>
+    </tr>
+    <tr>
+      <td>out_trade_no</td>
+      <td>{{out_trade_no}}</td>
+    </tr>
+    <tr>
+      <td>trade_no</td>
+      <td>{{trade_no}}</td>
+    </tr>
+    <tr>
+      <td>status</td>
+      <td>{{status}}</td>
+    </tr>
+    <tr>
+      <td>amount</td>
+      <td>{{amount}}</td>
+    </tr>
+    <tr>
+      <td>payment_type</td>
+      <td>{{payment_type}}</td>
+    </tr>
+    <tr>
+      <td>subject</td>
+      <td>{{subject}}</td>
+    </tr>
+    <tr>
+      <td>body</td>
+      <td>{{body}}</td>
+    </tr>
+    <tr>
+      <td>order_msg</td>
+      <td>{{order_msg}}</td>
+    </tr>
+    <tr>
+      <td>callback_url</td>
+      <td>{{callback_url}}</td>
+    </tr>
+    <tr>
+      <td>notify_url</td>
+      <td>{{notify_url}}</td>
+    </tr>
+    <tr>
+      <td>pay_params</td>
+      <td style="word-break:break-word;">{{pay_params}}</td>
+    </tr>
+    <tr>
+      <td>open_id</td>
+      <td>{{open_id}}</td>
+    </tr>
+    <tr>
+      <td>wx_mp_user_id</td>
+      <td>{{wx_mp_user_id}}</td>
+    </tr>
+    <tr>
+      <td>created_at</td>
+      <td>{{created_at}}</td>
+    </tr>
+    <tr>
+      <td>updated_at</td>
+      <td>{{updated_at}}</td>
+    </tr>
+    {{/each}}
+  </tbody>  
+</script>
+
+<script>
+  $("#select").on("click", function(){
+    if(!check_order_no()){return false};
+    busy_loading();
+
+    var order_no = $("#order_no").val();
+    var order_type = $(".btn-primary.active").data('type');
+    $.ajax({
+      type: "get",
+      url: "<%= API_VCOOLINE_URL%>/api/orders/"+ order_no + "?order_type=" + order_type,
+      success: function( result ) {
+        console.log(result);
+        if(result.error_code == 0){
+          var ractive = new Ractive({
+            el: "#ractive_container",
+            template: "#ractive_template",
+            data: { order: result['order'], payments: result.payments, vcooline_payments: result.vcooline_payments}
+          });
+          show_notice(result);
+        }else{
+          alert("抱歉，未找到相关订单信息!");
+        }
+        free_select();
+      },
+      error: function(){
+        alert("出错了...,点击确定重新载入");
+        location.reload();
+      }
+    });
+
+  });
+
+  function busy_loading(){
+    var select = $("#select");
+    select.html("loading");
+    select.addClass('disabled');
+  }
+
+  function free_select(){
+    var select = $("#select");
+    select.html("select");
+    select.removeClass('disabled');    
+  }
+
+  function check_order_no(){
+    if(!$("#order_no").val()){
+        alert("不输订单号你也想查");
+        return false;
+    }else{
+      return true;
+    }
+  };
+
+  function show_notice(result){
+    var order = result.order;
+    var payments = result.payments;
+    var vcooline_payments = result.vcooline_payments;
+    var alert_msg = $(".alert-success");
+    if(payments.length !=1 || vcooline_payments.length !=1){
+      alert_msg.html("订单payment不对，此订单很可能有问题");
+    }else if(payments[0].status == "success" && vcooline_payments[0].status == "success"){
+      if(order.status == "unpaid"){
+        alert_msg.html("支付状态不对，此订单很可能有问题,订单status" + order.status);
+      }else{
+        alert_msg.html("此订单应该没有问题");
+      }
+    }else{
+      alert_msg.html("此订单有可能支付失败或未支付");  
+    }
+    alert_msg.show();
+  }
+</script>

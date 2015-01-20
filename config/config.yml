@@ -1,0 +1,6 @@
+development:
+  ec_vcooline_api: "http://127.0.0.1:3001"
+test:
+  ec_vcooline_api: "http://ui.vkelai.com"
+production:
+  ec_vcooline_api: "http://ec.vcooline.com"
