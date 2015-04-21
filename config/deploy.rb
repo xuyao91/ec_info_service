@@ -2,12 +2,12 @@
 lock '3.3.5'
 
 set :application, 'app'
-set :port, 40022
-set :repo_url, 'ssh://git@admin.vcooline.com:40022/dyne/repos/ec/ec_info_service.git'
-set :deploy_to, '/dyne/apps/ec/ec_info_service'
+set :port, 0000
+set :repo_url, 'xxxxxxx'
+set :deploy_to, 'xxxxxxx'
 
-set :rack_env, :production
-set :unicorn_config_path, "#{shared_path}/config/production.rb"
+set :rack_env, :xxx
+set :unicorn_config_path, "#{shared_path}/xxxxxxxx.rb"
 set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
 
 # Default branch is :master
@@ -50,23 +50,4 @@ namespace :deploy do
       invoke 'unicorn:start'
     end
   end
-
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      #run "if [ -f #{unicorn_pid} ]; then kill -USR2 `cat #{unicorn_pid}`; else cd #{current_path} && bundle exec unicorn -c #{unicorn_conf} -E #{rack_env} -D; fi"
-      invoke 'unicorn:legacy_restart'
-    end
-  end
-
-  task :stop do
-    #run "if [ -f #{unicorn_pid} ]; then kill -QUIT `cat #{unicorn_pid}`; fi"
-      invoke 'unicorn:stop'
-  end 
-
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-    end
-  end
-
 end

@@ -16,7 +16,7 @@
 # used to set extended properties on the server.
 
 #server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
-server 'ec2.vcooline.com:40022', user: 'git', roles: %w{web app}
+server 'xxxxxxx', user: 'xxxxxxx', roles: %w{web app}
 
 # Custom SSH Options
 # ==================
